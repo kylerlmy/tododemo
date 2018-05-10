@@ -33,3 +33,12 @@
         display: none;
     }
 }
+/*table css*/
+div.todo-panel{
+    margin-top: 15px;
+}
+
+table tr.done{
+    text-decoration: line-through;
+    color: #888;
+}

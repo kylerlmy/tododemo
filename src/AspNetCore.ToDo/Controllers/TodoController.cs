@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AspNetCore.ToDo.Controllers {
     public class TodoController : Controller {
         public IActionResult Index () {
-            // return View ();
+             return View ();
         }
 
        
