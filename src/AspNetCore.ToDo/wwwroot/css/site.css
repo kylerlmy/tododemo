@@ -38,7 +38,7 @@ div.todo-panel{
     margin-top: 15px;
 }
 
-table tr.done{
+table tr.done{/*为选中的行应用样式*/
     text-decoration: line-through;
     color: #888;
 }

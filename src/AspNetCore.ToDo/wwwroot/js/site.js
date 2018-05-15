@@ -27,6 +27,6 @@ function markCompleted(checkbox)
     checkbox.disabled=true;
     $.post('/Todo/MarkDone',{id:checkbox.name},function(){
         var row=checkbox.parentElement.parentElement;
-        $(row).addClass('done');
+        $(row).addClass('done');//为选中的行添加类‘done’
     })
 }
