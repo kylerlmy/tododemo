@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AspNetCore.ToDo.Models.TodoViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AspNetCore.ToDo.Controllers
 {
+     [Authorize(Roles = "Administrator")]//如果没有这个特性，表示，普通用户也可以进入用户管理界面
     public class ManageUsersController : Controller
     {
 
@@ -26,9 +28,9 @@ namespace AspNetCore.ToDo.Controllers
             var admins=await _userManager.GetUsersInRoleAsync("Administrator");
             var everyone=await _userManager.Users.ToArrayAsync();
 
-            var model=new ManagerUsersViewModel{
-                Administrator=admins,
-                EveryOne=everyone
+            var model=new ManageUsersViewModel{
+                Administrators=admins,
+                Everyone=everyone
             };
 
             return View(model);
