@@ -6,18 +6,26 @@ using System.Threading.Tasks;
 using AspNetCore.ToDo.Models;
 using AspNetCore.ToDo.Models.TodoViewModels;
 using AspNetCore.ToDo.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 
 namespace AspNetCore.ToDo.Controllers {
+    [Authorize]
     public class TodoController : Controller {
 
         private readonly ITodoItemService _todoItemService;
-        public TodoController (ITodoItemService todoItemService) {
+        private readonly UserManager<ApplicationUser> _userManager;
+        public TodoController (ITodoItemService todoItemService,UserManager<ApplicationUser> userManager) {
             _todoItemService = todoItemService;
+            _userManager=userManager;
         }
 
         public async Task<IActionResult> Index () {
-            var todoItems = await _todoItemService.GetIncompleteItemAsync ();
+
+            var currentUser=await _userManager.GetUserAsync(User);
+            if(currentUser==null) return Challenge();
+            var todoItems = await _todoItemService.GetIncompleteItemAsync (currentUser);
             var model = new TodoViewModel () {
                 Items = todoItems
             };

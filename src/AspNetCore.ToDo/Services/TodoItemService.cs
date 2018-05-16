@@ -32,9 +32,9 @@ namespace AspNetCore.ToDo.Services
             return saveResult==1;
         }
 
-        public async Task<IEnumerable<TodoItem>> GetIncompleteItemAsync()
+        public async Task<IEnumerable<TodoItem>> GetIncompleteItemAsync(ApplicationUser user)
         {
-            var items=await _context.Items.Where(x=>x.IsDone==false).ToArrayAsync();
+            var items=await _context.Items.Where(x=>x.IsDone==false&&x.OwnerId==user.Id).ToArrayAsync();
             return items;
         }
 

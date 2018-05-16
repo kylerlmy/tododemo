@@ -32,6 +32,11 @@ namespace AspNetCore.ToDo.Services
         return Task.FromResult(items);
         }
 
+        public Task<IEnumerable<TodoItem>> GetIncompleteItemAsync(ApplicationUser user)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<bool> MarkDoneAsync(Guid id)
         {
             throw new NotImplementedException();

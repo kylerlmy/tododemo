@@ -78,6 +78,8 @@ namespace AspNetCore.ToDo.Data.Migrations
 
                     b.Property<bool>("IsDone");
 
+                    b.Property<string>("OwnerId");
+
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
