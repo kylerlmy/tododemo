@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using AspNetCore.ToDo.Data;
 using AspNetCore.ToDo.Models;
@@ -11,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AspNetCore.ToDo.Helper;
 
 namespace AspNetCore.ToDo
 {
@@ -88,19 +87,14 @@ namespace AspNetCore.ToDo
 
         private static async Task EnsureTestAdminAsync(UserManager<ApplicationUser> userManager)
         {
-            var testAdmin = await userManager.Users.Where(x => x.UserName == "admin").SingleOrDefaultAsync();
+            var testAdmin = await userManager.Users.Where(x => x.UserName == "admin@todo.local").SingleOrDefaultAsync();
 
             if (testAdmin != null) return;
 
-            testAdmin = new ApplicationUser { UserName = "admin", Email = "2811918767@qq.com" };
+            testAdmin = new ApplicationUser { UserName = "admin@todo.local", Email = "admin@todo.local" };
             await userManager.CreateAsync(testAdmin, "NotSecure123!");
             await userManager.AddToRoleAsync(testAdmin, Constants.AdministratorRole);
         }
 
-    }
-
-    public static class Constants
-    {
-        public const string AdministratorRole = "Administrator";
     }
 }
