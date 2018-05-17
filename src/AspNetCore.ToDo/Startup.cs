@@ -30,7 +30,7 @@ namespace AspNetCore.ToDo
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
-            //配置Identity
+            //配置 Individual authentication 的 Identity验证
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
