@@ -13,9 +13,14 @@ namespace AspNetCore.ToDo.Services
             throw new NotImplementedException();
         }
 
+        public Task<bool> AddItemAsync(NewTodoItem newItem, ApplicationUser user)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<TodoItem>> GetIncompleteItemAsync()
         {
-            IEnumerable<TodoItem> items=new[]
+            IEnumerable<TodoItem> items = new[]
             {
                 new TodoItem
                 {
@@ -28,8 +33,8 @@ namespace AspNetCore.ToDo.Services
                     DueAt=DateTimeOffset.Now.AddDays(2)
                 }
             };
-            
-        return Task.FromResult(items);
+
+            return Task.FromResult(items);
         }
 
         public Task<IEnumerable<TodoItem>> GetIncompleteItemAsync(ApplicationUser user)
@@ -38,6 +43,11 @@ namespace AspNetCore.ToDo.Services
         }
 
         public Task<bool> MarkDoneAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> MarkDoneAsync(Guid id, ApplicationUser user)
         {
             throw new NotImplementedException();
         }
